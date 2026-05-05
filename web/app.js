@@ -1,4 +1,4 @@
-const API = 'http://localhost:8080/api';
+const API = 'https://arbol-binario-production.up.railway.app/';
 const canvas = document.getElementById('canvas-arbol');
 const ctx = canvas.getContext('2d');
 
