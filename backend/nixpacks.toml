@@ -5,4 +5,4 @@ nixPkgs = ["jdk"]
 cmds = ["mkdir -p out", "javac -d out src/*.java"]
 
 [start]
-cmd = "java -cp out Main"
+cmd = "java -cp /app/out Main"
