@@ -1,0 +1,11 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "javac -d out src/*.java"
+  },
+  "deploy": {
+    "startCommand": "java -cp out Main",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}
