@@ -1,4 +1,3 @@
-package backend.src;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
@@ -13,8 +12,18 @@ public class Servidor {
     public static void iniciar(int port) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
-        // Sirve los archivos web (HTML, CSS, JS)
-        server.createContext("/", new ArchivoHandler());
+        // Maneja OPTIONS para CORS
+        server.createContext("/", exchange -> {
+            if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "*");
+                exchange.sendResponseHeaders(204, -1);
+                exchange.getResponseBody().close();
+            } else {
+                new ArchivoHandler().handle(exchange);
+            }
+        });
 
         // Endpoints de la API
         server.createContext("/api/estaVacio",       exchange -> responder(exchange, String.valueOf(arbol.estaVacio())));
@@ -36,7 +45,7 @@ public class Servidor {
         server.createContext("/api/arbol",            exchange -> responder(exchange, arbol.arbolAJson(arbol.getRaiz())));
 
         server.start();
-        System.out.println("✅ Servidor corriendo en http://localhost:8080");
+        System.out.println("✅ Servidor corriendo en puerto " + port);
     }
 
     // ── Handlers con parámetros ───────────────────────────
@@ -89,9 +98,11 @@ public class Servidor {
         }
     }
 
-    // ── Respuesta genérica ────────────────────────────────
+    // ── Respuesta genérica con CORS ───────────────────────
     static void responder(HttpExchange exchange, String respuesta) throws IOException {
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "*");
         exchange.getResponseHeaders().add("Content-Type", "text/plain; charset=UTF-8");
         byte[] bytes = respuesta.getBytes("UTF-8");
         exchange.sendResponseHeaders(200, bytes.length);
