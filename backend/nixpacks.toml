@@ -2,7 +2,7 @@
 nixPkgs = ["jdk"]
 
 [phases.build]
-cmds = ["mkdir -p out", "javac -d out src/*.java"]
+cmds = ["mkdir -p out", "javac -d out src/Nodo.java src/ArbolBinario.java src/Servidor.java src/Main.java"]
 
 [start]
 cmd = "java -cp /app/out Main"
