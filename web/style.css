@@ -1,0 +1,222 @@
+/* ── Reset y base ─────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* ── Header ───────────────────────────────── */
+header {
+    background: #1a1d2e;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #2d9cdb;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+#estado-arbol {
+    background: #2d9cdb22;
+    border: 1px solid #2d9cdb;
+    color: #2d9cdb;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* ── Layout principal ─────────────────────── */
+main {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    padding: 20px;
+    height: calc(100vh - 72px);
+}
+
+/* ── Panel controles ──────────────────────── */
+.panel-controles {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.tarjeta {
+    background: #1a1d2e;
+    border: 1px solid #2a2d3e;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tarjeta h2 {
+    font-size: 0.85rem;
+    color: #8888aa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+/* ── Inputs y botones ─────────────────────── */
+.input-grupo {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+input[type="number"] {
+    flex: 1;
+    background: #0f1117;
+    border: 1px solid #2a2d3e;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    min-width: 80px;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #2d9cdb;
+}
+
+button {
+    background: #2d9cdb;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #1a7fb5;
+}
+
+.btn-peligro {
+    background: #e74c3c;
+}
+
+.btn-peligro:hover {
+    background: #c0392b;
+}
+
+.btn-ancho {
+    width: 100%;
+    padding: 10px;
+}
+
+.botones-grupo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.botones-grupo button {
+    flex: 1;
+    min-width: 80px;
+    font-size: 0.82rem;
+    padding: 8px 10px;
+}
+
+/* ── Panel visual ─────────────────────────── */
+.panel-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.arbol-contenedor {
+    flex: 1;
+    background: #1a1d2e;
+    border: 1px solid #2a2d3e;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+#canvas-arbol {
+    width: 100%;
+    height: 100%;
+}
+
+#arbol-vacio-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #444466;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* ── Resultado ────────────────────────────── */
+.resultado-contenedor {
+    background: #1a1d2e;
+    border: 1px solid #2a2d3e;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 80px;
+}
+
+.resultado-contenedor h3 {
+    font-size: 0.8rem;
+    color: #8888aa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+#resultado {
+    color: #aaddff;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#resultado.exito  { color: #2ecc71; }
+#resultado.error  { color: #e74c3c; }
+#resultado.info   { color: #2d9cdb; }
+
+/* ── Modal ────────────────────────────────── */
+#modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: #00000088;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#modal-overlay.oculto { display: none; }
+
+.modal {
+    background: #1a1d2e;
+    border: 1px solid #e74c3c;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 380px;
+    text-align: center;
+}
+
+.modal h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.modal p  { color: #8888aa; margin-bottom: 20px; }
+
+.modal-botones {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}

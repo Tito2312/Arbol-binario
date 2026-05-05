@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol Binario de Búsqueda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🌳 Árbol Binario de Búsqueda</h1>
+        <div id="estado-arbol">Árbol vacío</div>
+    </header>
+
+    <main>
+
+        <!-- Panel izquierdo: controles -->
+        <section class="panel-controles">
+
+            <!-- Agregar -->
+            <div class="tarjeta">
+                <h2>Agregar dato</h2>
+                <div class="input-grupo">
+                    <input type="number" id="input-agregar" placeholder="Ej: 50">
+                    <button onclick="agregar()">Agregar</button>
+                </div>
+            </div>
+
+            <!-- Buscar / Nivel / Existe -->
+            <div class="tarjeta">
+                <h2>Buscar dato</h2>
+                <div class="input-grupo">
+                    <input type="number" id="input-buscar" placeholder="Ej: 30">
+                    <button onclick="existeDato()">¿Existe?</button>
+                    <button onclick="obtenerNivel()">Nivel</button>
+                </div>
+            </div>
+
+            <!-- Eliminar -->
+            <div class="tarjeta">
+                <h2>Eliminar dato</h2>
+                <div class="input-grupo">
+                    <input type="number" id="input-eliminar" placeholder="Ej: 20">
+                    <button class="btn-peligro" onclick="eliminar()">Eliminar</button>
+                </div>
+            </div>
+
+            <!-- Recorridos -->
+            <div class="tarjeta">
+                <h2>Recorridos</h2>
+                <div class="botones-grupo">
+                    <button onclick="recorrer('inorden')">Inorden</button>
+                    <button onclick="recorrer('preorden')">Preorden</button>
+                    <button onclick="recorrer('postorden')">Postorden</button>
+                    <button onclick="amplitud()">Amplitud</button>
+                </div>
+            </div>
+
+            <!-- Info del árbol -->
+            <div class="tarjeta">
+                <h2>Información del árbol</h2>
+                <div class="botones-grupo">
+                    <button onclick="obtenerPeso()">Peso</button>
+                    <button onclick="obtenerAltura()">Altura</button>
+                    <button onclick="contarHojas()">Hojas</button>
+                    <button onclick="obtenerMenor()">Menor</button>
+                    <button onclick="obtenerMayor()">Mayor</button>
+                    <button onclick="obtenerNodoMenor()">Nodo Menor</button>
+                    <button onclick="estaVacio()">¿Está vacío?</button>
+                </div>
+            </div>
+
+            <!-- Borrar árbol -->
+            <div class="tarjeta">
+                <h2>Peligro</h2>
+                <button class="btn-peligro btn-ancho" onclick="confirmarBorrar()">
+                    🗑️ Borrar árbol completo
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Panel derecho: visualización -->
+        <section class="panel-visual">
+
+            <!-- Canvas del árbol -->
+            <div class="arbol-contenedor">
+                <canvas id="canvas-arbol"></canvas>
+                <div id="arbol-vacio-msg">El árbol está vacío. Agrega un dato para comenzar.</div>
+            </div>
+
+            <!-- Resultado -->
+            <div class="resultado-contenedor">
+                <h3>Resultado</h3>
+                <div id="resultado">Aquí aparecerán los resultados de las operaciones...</div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Modal de confirmación -->
+    <div id="modal-overlay" class="oculto">
+        <div class="modal">
+            <h3>⚠️ ¿Estás seguro?</h3>
+            <p>Esta acción borrará todos los nodos del árbol y no se puede deshacer.</p>
+            <div class="modal-botones">
+                <button class="btn-peligro" onclick="borrarArbol()">Sí, borrar todo</button>
+                <button onclick="cerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
