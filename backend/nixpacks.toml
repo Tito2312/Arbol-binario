@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk"]
+
+[phases.build]
+cmds = ["mkdir -p out", "javac -d out src/*.java"]
+
+[start]
+cmd = "java -cp out Main"
