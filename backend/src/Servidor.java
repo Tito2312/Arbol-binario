@@ -1,3 +1,5 @@
+package backend.src;
+
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
@@ -93,8 +95,12 @@ public class Servidor {
                 byte[] bytes = Files.readAllBytes(Paths.get(archivo.getPath()));
                 exchange.sendResponseHeaders(200, bytes.length);
                 exchange.getResponseBody().write(bytes);
-                exchange.getResponseBody().close();
+            } else {
+                byte[] bytes = "404 Not Found".getBytes("UTF-8");
+                exchange.sendResponseHeaders(404, bytes.length);
+                exchange.getResponseBody().write(bytes);
             }
+            exchange.getResponseBody().close();
         }
     }
 
